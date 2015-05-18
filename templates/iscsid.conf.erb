@@ -1,0 +1,104 @@
+
+######################
+# iscsid daemon config
+######################
+
+iscsid.startup = <%= @iscsid_startup %>
+node.startup = <%= @startup %>
+
+#*****************
+# Startup settings
+#*****************
+
+node.leading_login = <%= @leading_login ? "Yes" : "No" %>
+
+# *************
+# CHAP Settings
+# *************
+
+<% if @node_authmethod -%>
+node.session.auth.authmethod = <%= @node_authmethod %>
+<% end -%>
+<% if @node_username -%>
+node.session.auth.username = <%= @node_username %>
+<% end -%>
+<% if @node_password -%>
+node.session.auth.password = <%= @node_password %>
+<% end -%>
+<% if @node_username_in -%>
+node.session.auth.username_in = <%= @node_username_in %>
+<% end -%>
+<% if @node_password_in -%>
+node.session.auth.password_in = <%= @node_password_in %>
+<% end -%>
+
+<% if @discovery_authmethod -%>
+discovery.sendtargets.auth.authmethod = <%= @discovery_authmethod %>
+<% end -%>
+<% if @discovery_username -%>
+discovery.sendtargets.auth.username = <%= @discovery_username %>
+<% end -%>
+<% if @discovery_password -%>
+discovery.sendtargets.auth.password = <%= @discovery_password %>
+<% end -%>
+<% if @discovery_username_in -%>
+discovery.sendtargets.auth.username_in = <%= @discovery_username_in %>
+<% end -%>
+<% if @discovery_password_in -%>
+discovery.sendtargets.auth.password_in = <%= @discovery_password_in %>
+<% end -%>
+
+
+# ********
+# Timeouts
+# ********
+
+node.session.timeo.replacement_timeout = <%= @replacement_timeout %>
+node.conn[0].timeo.login_timeout = <%= @login_timeout %>
+node.conn[0].timeo.logout_timeout = <%= @logout_timeout %>
+node.conn[0].timeo.noop_out_interval = <%= @noop_out_interval %>
+node.conn[0].timeo.noop_out_timeout = <%= @noop_out_timeout %>
+node.session.err_timeo.abort_timeout = <%= @abort_timeout %>
+node.session.err_timeo.lu_reset_timeout = <%= @lu_reset_timeout %>
+node.session.err_timeo.tgt_reset_timeout = <%= @tgt_reset_timeout %>
+
+
+#******
+# Retry
+#******
+
+node.session.initial_login_retry_max = <%= @initial_login_retry_max %>
+
+################################
+# session and device queue depth
+################################
+
+node.session.cmds_max = <%= @session_cmds_max %>
+node.session.queue_depth = <%= @session_queue_depth %>
+
+##################################
+# MISC SYSTEM PERFORMANCE SETTINGS
+##################################
+
+node.session.xmit_thread_priority = <%= @xmit_thread_priority %>
+
+#***************
+# iSCSI settings
+#***************
+
+node.session.iscsi.InitialR2T = <%= @initialR2T ? "Yes" : "No" %>
+node.session.iscsi.ImmediateData = <%= @immediateData ? "Yes" : "No" %>
+node.session.iscsi.FirstBurstLength = <%= @firstBurstLength %>
+node.session.iscsi.MaxBurstLength = <%= @maxBurstLength %>
+node.conn[0].iscsi.MaxRecvDataSegmentLength = <%= @maxRecvDataSegmentLength %>
+node.conn[0].iscsi.MaxXmitDataSegmentLength = <%= @maxXmitDataSegmentLength %>
+discovery.sendtargets.iscsi.MaxRecvDataSegmentLength = <%= @maxRecvDataSegmentLength %>
+node.conn[0].iscsi.HeaderDigest = <%= @headerDigest %>
+node.conn[0].iscsi.DataDigest = <%= @dataDigest %>
+node.session.nr_sessions = <%= @nr_sessions %>
+
+#************
+# Workarounds
+#************
+
+node.session.iscsi.FastAbort = <%= @fastAbort ? "Yes" : "No" %>
