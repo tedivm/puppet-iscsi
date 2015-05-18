@@ -1,14 +1,13 @@
 {
-  "name": "tedivm-open_iscsi",
+  "name": "tedivm-iscsi",
   "version": "0.1.0",
   "author": "tedivm",
   "summary": "A package for managing iscsi initiators",
   "license": "MIT",
-  "source": "https://github.com/tedivm/puppet-open_iscsi",
-  "project_page": "https://github.com/tedivm/puppet-open_iscsi",
-  "issues_url": "https://github.com/tedivm/puppet-open_iscsi/issues",
+  "source": "https://github.com/tedivm/puppet-iscsi",
+  "project_page": "https://github.com/tedivm/puppet-iscsi",
+  "issues_url": "https://github.com/tedivm/puppet-iscsi/issues",
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
   ]
 }
-
