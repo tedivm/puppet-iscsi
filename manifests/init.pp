@@ -1,4 +1,4 @@
-# == Class: open_iscsi
+# == Class: iscsi
 #
 # Full description of class open_iscsi here.
 #
@@ -35,7 +35,7 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class open_iscsi(
+class iscsi(
   $node_authmethod = undef,
   $node_username = undef,
   $node_password = undef,
