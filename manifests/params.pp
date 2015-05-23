@@ -13,16 +13,16 @@
 class iscsi::params {
 
   # Auth settings
-  $node_authmethod = false,
-  $node_username = false,
-  $node_password = false,
-  $node_username_in = false,
-  $node_password_in = false,
-  $discovery_authmethod = false,
-  $discovery_username = false,
-  $discovery_password = false,
-  $discovery_username_in = false,
-  $discovery_password_in = false,
+  $node_authmethod = false
+  $node_username = false
+  $node_password = false
+  $node_username_in = false
+  $node_password_in = false
+  $discovery_authmethod = false
+  $discovery_username = false
+  $discovery_password = false
+  $discovery_username_in = false
+  $discovery_password_in = false
 
   # Startup settings
   $startup = 'manual'
