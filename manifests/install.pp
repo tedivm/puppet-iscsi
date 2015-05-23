@@ -13,5 +13,5 @@
 class iscsi::install ()
 inherits iscsi::params
 {
-  package { $iscsi::params::server_packages: }
+  package { $iscsi::params::packages: }
 }
