@@ -73,7 +73,7 @@ class iscsi(
   $fastAbort = $iscsi::params::fastAbort,
   $iscsid_startup = $iscsi::params::iscsid_startup,
   $iscsid_conf = $iscsi::params::iscsid_conf
-) inherits isci::params {
+) inherits iscsi::params {
 
   class { 'iscsi::install':}->
 

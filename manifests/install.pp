@@ -11,7 +11,7 @@
 # Sample Usage:
 #
 class iscsi::install ()
-inherits isci::params
+inherits iscsi::params
 {
   package { $iscsi::params::server_packages: }
 }
