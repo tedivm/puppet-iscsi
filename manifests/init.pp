@@ -81,7 +81,9 @@ class iscsi(
     content => template('iscsi/iscsid.conf.erb'),
     owner => 'root',
     group => 'root',
-  }
+    notify => Service[$iscsi::params::service]
+  } ~>
 
+  class { 'iscsi::service':}
 
 }
