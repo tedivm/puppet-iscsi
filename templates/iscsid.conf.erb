@@ -12,10 +12,11 @@ node.startup = <%= @startup %>
 
 node.leading_login = <%= @leading_login ? "Yes" : "No" %>
 
-# *************
+<% if @node_authmethod or @discovery_authmethod -%>
+#**************
 # CHAP Settings
-# *************
-
+#**************
+<% end -%>
 <% if @node_authmethod -%>
 node.session.auth.authmethod = <%= @node_authmethod %>
 <% end -%>
@@ -31,8 +32,8 @@ node.session.auth.username_in = <%= @node_username_in %>
 <% if @node_password_in -%>
 node.session.auth.password_in = <%= @node_password_in %>
 <% end -%>
-
 <% if @discovery_authmethod -%>
+
 discovery.sendtargets.auth.authmethod = <%= @discovery_authmethod %>
 <% end -%>
 <% if @discovery_username -%>
@@ -47,11 +48,12 @@ discovery.sendtargets.auth.username_in = <%= @discovery_username_in %>
 <% if @discovery_password_in -%>
 discovery.sendtargets.auth.password_in = <%= @discovery_password_in %>
 <% end -%>
+<% if @node_authmethod or @discovery_authmethod -%>
 
-
-# ********
+<% end -%>
+#*********
 # Timeouts
-# ********
+#*********
 
 node.session.timeo.replacement_timeout = <%= @replacement_timeout %>
 node.conn[0].timeo.login_timeout = <%= @login_timeout %>
