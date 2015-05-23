@@ -73,11 +73,13 @@ class iscsi::params {
   case $::osfamily {
     debian: {
       $packages = 'open-iscsi'
+      $service = 'open-iscsi'
       $iscsid_startup = '/usr/sbin/iscsid'
     }
 
     redhat: {
       $packages = 'iscsi-initiator-utils'
+      $service = 'iscsid'
       $iscsid_startup = '/etc/rc.d/init.d/iscsid force-start'
     }
 
