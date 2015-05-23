@@ -72,5 +72,5 @@ class iscsi::params {
     default: {
       fail('ISCSI only works on Debian or Redhat families of linux.')
     }
-
+  }
 }
