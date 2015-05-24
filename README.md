@@ -1,11 +1,11 @@
-# open_iscsi
+# iscsi
 
 #### Table of Contents
 
 1. [Overview](#overview)
 2. [Module Description](#module-description)
 3. [Setup](#setup)
-    * [What open_iscsi affects](#what-open_iscsi-affects)
+    * [What iscsi affects](#what-iscsi-affects)
     * [Setup requirements](#setup-requirements)
 4. [Usage](#usage)
 5. [Reference](#reference)
