@@ -1,6 +1,7 @@
-# == Class: iscsi
+# == Class: iscsi::initiator
 #
-# Full description of class open_iscsi here.
+# The iscsi::initiator sets up the client configution for servers which connect
+# to iscsi machines.
 #
 # === Parameters
 #
@@ -10,30 +11,32 @@
 #   Explanation of what this parameter affects and what it defaults to.
 #   e.g. "Specify one or more upstream ntp servers as an array."
 #
-# === Variables
-#
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
-#
 # === Examples
 #
-#  class { 'open_iscsi':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
+#  class { 'iscsi':
+#    startup => 'automatic',
+#
+#    node_authmethod => 'CHAP'
+#    node_username => 'iqn.1993-08.org.debian:01:3181f68bc3dd',
+#    node_password => 'jXb8F5uR22KhpJkFTTTYtA',
+#    node_username_in => $::iscsi_initiator,
+#    node_password_in => 'C9LbgUQGAXGuv4bEjGxgYt',
+#
+#    discovery_authmethod => 'CHAP',
+#    discovery_username => 'iqn.1993-08.org.debian:01:3181f68bc3dd'
+#    discovery_password => 'jXb8F5uR22KhpJkFTTTYtA',
+#    discovery_username_in => $::iscsi_initiator
+#    discovery_password_in => 'C9LbgUQGAXGuv4bEjGxgYt',
 #  }
+#
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Robert Hafner <tedivm@tedivm.com>
 #
 # === Copyright
 #
-# Copyright 2015 Your name here, unless otherwise noted.
+# See LICENSE file distributed with this module.
 #
 class iscsi::initiator(
   $node_authmethod = hiera('iscsi::node_authmethod', $iscsi::params::node_authmethod),
@@ -72,7 +75,7 @@ class iscsi::initiator(
   $MaxRecvDataSegmentLength = hiera('iscsi::MaxRecvDataSegmentLength', $iscsi::params::MaxRecvDataSegmentLength),
   $fastAbort = hiera('iscsi::fastAbort', $iscsi::params::fastAbort),
   $iscsid_startup = hiera('iscsi::iscsid_startup', $iscsi::params::iscsid_startup),
-  $iscsid_conf = hiera('iscsi::iscsid_conf', $iscsi::params::iscsid_con)f
+  $iscsid_conf = hiera('iscsi::iscsid_conf', $iscsi::params::iscsid_conf)
 ) inherits iscsi::params {
 
   class { 'iscsi::install':}->

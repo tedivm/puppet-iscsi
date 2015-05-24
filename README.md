@@ -3,77 +3,171 @@
 #### Table of Contents
 
 1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with open_iscsi](#setup)
+2. [Module Description](#module-description)
+3. [Setup](#setup)
     * [What open_iscsi affects](#what-open_iscsi-affects)
     * [Setup requirements](#setup-requirements)
-    * [Beginning with open_iscsi](#beginning-with-open_iscsi)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+4. [Usage](#usage)
+5. [Reference](#reference)
+5. [Limitations](#limitations)
+6. [Development](#development)
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+This module manages the iscsi service on Debian and Redhat family nodes.
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+This module installs and configures the iscsi packages (Redhat's iscsid or
+Debian's open-iscsi) and manages it's configuration. This allows nodes to
+connect to iscsi servers, such as the AWS Storage Gateway.
 
 ## Setup
 
-### What open_iscsi affects
+### What iscsi affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* This module manages the iscsi configuration and ensures it's service
+  is running.
+* A new fact, "iscsi_initiator", exposes the unique identifier for the iscsi
+  node.
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+In order to use the bundled fact you need to have pluginsync enabled.
 
-### Beginning with open_iscsi
-
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+The simplest way to use this module is to include the iscsi::initiator class.
+
+```puppet
+include iscsi::initiator
+```
+
+This class also supports a variety of options, such as CHAP authentication.
+
+```puppet
+class { 'iscsi::initiator':
+  startup => "automatic",
+
+  node_authmethod => 'CHAP'
+  node_username => 'iqn.1993-08.org.debian:01:3181f68bc3dd',
+  node_password => 'jXb8F5uR22KhpJkFTTTYtA',
+  node_username_in => $::iscsi_initiator,
+  node_password_in => 'C9LbgUQGAXGuv4bEjGxgYt',
+
+  discovery_authmethod => 'CHAP',
+  discovery_username => 'iqn.1993-08.org.debian:01:3181f68bc3dd'
+  discovery_password => 'jXb8F5uR22KhpJkFTTTYtA',
+  discovery_username_in => $::iscsi_initiator
+  discovery_password_in => 'C9LbgUQGAXGuv4bEjGxgYt',
+}
+```
+
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+### Facts
+
+* [*iscsi_initiator*]
+    This fact gives the initiator name (ie,
+    "iqn.1993-08.org.debian:01:3181f68bc3dd"). It's important to note that this
+    fact returns false during the first run where the module is installed as the
+    iqn is created when the package is installed, after facts are evaluated.
+
+
+### classes
+
+#### *iscsi::initiator*
+
+* [*node_authmethod*] - ISCSI authentication method. Defaults to false.
+
+* [*node_username*] - Node (server) username. Defaults to false.
+
+* [*node_password*] - Node (server) password. Defaults to false.
+
+* [*node_username_in*] - Initiator (client) username. Defaults to false.
+
+* [*node_password_in*] - Initiator (client) Password. Defaults to false.
+
+* [*discovery_authmethod*] - ISCSI authentication method. Defaults to false.
+
+* [*discovery_username*] - Node (server) username for discovery. Defaults to
+    false.
+
+* [*discovery_password*] - Node (server) username for discovery. Defaults to
+    false.
+
+* [*discovery_username_in*] - Initiator (client) username for discovery.
+    Defaults to false.
+
+* [*discovery_password_in*] - Initiator (client) username for discovery.
+    Defaults to false.
+
+* [*startup*] - Whether to use automatic or manual startup. Defaults to manual.
+
+* [*leading_login*] - Whether to login to targets one at a time (true) or to
+    attempt each connection (false). Defaults to true.
+
+* [*replacement_timeout*] - Defaults to 120.
+
+* [*login_timeout*] - Defaults to 15.
+
+* [*logout_timeout*] - Defaults to 15.
+
+* [*noop_out_interval*] - Defaults to 5.
+
+* [*noop_out_timeout*] - Defaults to 5.
+
+* [*abort_timeout*] - Defaults to 15.
+
+* [*lu_reset_timeout*] - Defaults to 30.
+
+* [*tgt_reset_timeout*] - Defaults to 30.
+
+* [*initial_login_retry_max*] - Defaults to 8.
+
+* [*session_cmds_max*] - Defaults to 128.
+
+* [*session_queue_depth*] - Defaults to 32.
+
+* [*xmit_thread_priority*] - Defaults to -20.
+
+* [*initialR2T*] - Defaults to false.
+
+* [*immediateData*] - Defaults to true.
+
+* [*firstBurstLength*] - Defaults to 262144.
+
+* [*maxBurstLength*] - Defaults to 16776192.
+
+* [*maxRecvDataSegmentLength*] - Defaults to 262144.
+
+* [*maxXmitDataSegmentLength*] - Defaults to 0.
+
+* [*headerDigest*] - Defaults to "None".
+
+* [*dataDigest*] - Defaults to "None"
+
+* [*nr_sessions*] - Defaults to 1.
+
+* [*MaxRecvDataSegmentLength*] - Defaults to 32768.
+
+* [*fastAbort*] - Defaults to true.
+
+* [*iscsid_conf*] - Defaults to "/etc/iscsi/iscsid.conf".
+
+* [*iscsid_startup*] - Sets the restart script for the service. The default
+    depends on the operating system.
+
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This module currently handles installation and services, but does not yet
+provide functionality to mount the specific drives. This has to be done manually
+using iscsiadm.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+Contributions are always welcome. Please read the [Contributing Guide](CONTRIBUTING.md)
+to get started.

@@ -1,15 +1,6 @@
 # Class: iscsi::params
 #
 # This class manages parameters for the iscsi module
-#
-# Parameters:
-#
-# Actions:
-#
-# Requires:
-#
-# Sample Usage:
-#
 class iscsi::params {
 
   # Auth settings
