@@ -55,12 +55,6 @@ class { 'iscsi::initiator':
   node_password => 'jXb8F5uR22KhpJkFTTTYtA',
   node_username_in => $::iscsi_initiator,
   node_password_in => 'C9LbgUQGAXGuv4bEjGxgYt',
-
-  discovery_authmethod => 'CHAP',
-  discovery_username => 'iqn.1993-08.org.debian:01:3181f68bc3dd'
-  discovery_password => 'jXb8F5uR22KhpJkFTTTYtA',
-  discovery_username_in => $::iscsi_initiator
-  discovery_password_in => 'C9LbgUQGAXGuv4bEjGxgYt',
 }
 ```
 
@@ -82,13 +76,13 @@ class { 'iscsi::initiator':
 
 * [*node_authmethod*] - ISCSI authentication method. Defaults to false.
 
-* [*node_username*] - Node (server) username. Defaults to false.
+* [*node_username*] - Username server uses to authenticate to client. Defaults to false.
 
-* [*node_password*] - Node (server) password. Defaults to false.
+* [*node_password*] - Password server uses to authenticate to client. Defaults to false.
 
-* [*node_username_in*] - Initiator (client) username. Defaults to false.
+* [*node_username_in*] - Username client uses to authenticate to server. Defaults to false.
 
-* [*node_password_in*] - Initiator (client) Password. Defaults to false.
+* [*node_password_in*] - Password client uses to authenticate to server. Defaults to false.
 
 * [*discovery_authmethod*] - ISCSI authentication method. Defaults to false.
 
