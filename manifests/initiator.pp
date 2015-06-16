@@ -82,9 +82,9 @@ class iscsi::initiator(
 
   file { $iscsid_conf:
     content => template('iscsi/iscsid.conf.erb'),
-    owner => 'root',
-    group => 'root',
-    notify => Service[$iscsi::params::service]
+    owner   => 'root',
+    group   => 'root',
+    notify  => Service[$iscsi::params::service]
   } ~>
 
   class { 'iscsi::service':}

@@ -26,8 +26,8 @@ connect to iscsi servers, such as the AWS Storage Gateway.
 
 ### What iscsi affects
 
-* This module manages the iscsi configuration and ensures it's service
-  is running.
+* This module manages the iscsi configuration and ensures it's service is
+  running.
 * A new fact, "iscsi_initiator", exposes the unique identifier for the iscsi
   node.
 

@@ -58,7 +58,6 @@ class iscsi::params {
   # Workarounds
   $fastAbort = true
 
-
   $iscsid_conf = '/etc/iscsi/iscsid.conf'
 
   case $::osfamily {

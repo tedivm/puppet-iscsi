@@ -5,8 +5,7 @@ class iscsi::service ()
 inherits iscsi::params
 {
   service { $iscsi::params::service:
-    ensure => 'running',
+    ensure     => 'running',
     hasrestart => true
   }
-
 }
