@@ -1,6 +1,6 @@
 {
   "name": "tedivm-iscsi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "tedivm",
   "summary": "A package for managing iscsi initiators",
   "tags": [
@@ -11,7 +11,10 @@
   "project_page": "https://github.com/tedivm/puppet-iscsi",
   "issues_url": "https://github.com/tedivm/puppet-iscsi/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
