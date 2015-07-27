@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "author": "tedivm",
   "summary": "A package for managing iscsi initiators",
+  "tags": [
+    "iscsi"
+  ],
   "license": "MIT",
   "source": "https://github.com/tedivm/puppet-iscsi",
   "project_page": "https://github.com/tedivm/puppet-iscsi",
