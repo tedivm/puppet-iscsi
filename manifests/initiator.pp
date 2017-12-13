@@ -72,7 +72,6 @@ class iscsi::initiator(
   $headerDigest = hiera('iscsi::headerDigest', $iscsi::params::headerDigest),
   $dataDigest = hiera('iscsi::dataDigest', $iscsi::params::dataDigest),
   $nr_sessions = hiera('iscsi::nr_sessions', $iscsi::params::nr_sessions),
-  $MaxRecvDataSegmentLength = hiera('iscsi::MaxRecvDataSegmentLength', $iscsi::params::MaxRecvDataSegmentLength),
   $fastAbort = hiera('iscsi::fastAbort', $iscsi::params::fastAbort),
   $iscsid_startup = hiera('iscsi::iscsid_startup', $iscsi::params::iscsid_startup),
   $iscsid_conf = hiera('iscsi::iscsid_conf', $iscsi::params::iscsid_conf)
