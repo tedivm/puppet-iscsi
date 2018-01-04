@@ -145,7 +145,7 @@ class { 'iscsi::initiator':
 
 * [*nr_sessions*] - Defaults to 1.
 
-* [*MaxRecvDataSegmentLength*] - Defaults to 32768.
+* [*discoveryMaxRecvDataSegmentLength*] - Defaults to 32768.
 
 * [*fastAbort*] - Defaults to true.
 

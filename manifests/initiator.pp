@@ -69,6 +69,7 @@ class iscsi::initiator(
   $maxBurstLength = hiera('iscsi::maxBurstLength', $iscsi::params::maxBurstLength),
   $maxRecvDataSegmentLength = hiera('iscsi::maxRecvDataSegmentLength', $iscsi::params::maxRecvDataSegmentLength),
   $maxXmitDataSegmentLength = hiera('iscsi::maxXmitDataSegmentLength', $iscsi::params::maxXmitDataSegmentLength),
+  $discoveryMaxRecvDataSegmentLength = hiera('iscsi::discoveryMaxRecvDataSegmentLength', $iscsi::params::discoveryMaxRecvDataSegmentLength),
   $headerDigest = hiera('iscsi::headerDigest', $iscsi::params::headerDigest),
   $dataDigest = hiera('iscsi::dataDigest', $iscsi::params::dataDigest),
   $nr_sessions = hiera('iscsi::nr_sessions', $iscsi::params::nr_sessions),
