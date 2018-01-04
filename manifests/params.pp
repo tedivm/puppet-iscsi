@@ -53,6 +53,8 @@ class iscsi::params {
   $dataDigest = None
   $nr_sessions = 1
 
+  $discoveryMaxRecvDataSegmentLength = 32768
+
   # Workarounds
   $fastAbort = true
 
