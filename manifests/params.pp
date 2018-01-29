@@ -49,8 +49,8 @@ class iscsi::params {
   $maxBurstLength = 16776192
   $maxRecvDataSegmentLength = 262144
   $maxXmitDataSegmentLength = 0
-  $headerDigest = None
-  $dataDigest = None
+  $headerDigest = 'None'
+  $dataDigest = 'None'
   $nr_sessions = 1
 
   $discoveryMaxRecvDataSegmentLength = 32768
